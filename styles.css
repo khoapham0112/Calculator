@@ -49,9 +49,45 @@ body {
     color: #DFDFDF;
     cursor: pointer;
     transition: all .15s ease-in-out;
+    box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 #button-container #equal {
     grid-column: 3/5;
     border-radius: 20px;
+}
+
+#operator {
+    font-size: 25px;
+    margin: 10px;
+    color: #60A07F;
+}
+
+#result {
+    font-size: 30px;
+    margin: 10px;
+    color: white;
+}
+
+ #clear:hover, #allClear:hover {
+    background-color: rgb(246, 150, 150);
+    color: black;
+    transform: translateY(-0.2rem);
+}
+
+#button-container button:hover {
+    background-color: #e5e4e4;
+    color: black;
+    transform: translateY(-0.2rem);
+}
+
+#button-container #modolu:hover, #button-container #division:hover, #button-container #add:hover, #button-container #minus:hover, #button-container #multiply:hover {
+    background-color: mediumturquoise;
+    color: black;
+    transform: translateY(-0.2rem);
+}
+
+#button-container #equal:hover {
+    background-color: greenyellow;
+    transform: translateY(-0.2rem);
 }
