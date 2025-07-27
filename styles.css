@@ -69,7 +69,7 @@ body {
     color: white;
 }
 
- #clear:hover, #allClear:hover {
+ #button-container #clear:hover, #button-container #allClear:hover {
     background-color: rgb(246, 150, 150);
     color: black;
     transform: translateY(-0.2rem);
