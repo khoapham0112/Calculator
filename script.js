@@ -51,7 +51,9 @@ function equal() {
     let input1 = Number(x);
     let input2 = Number(y);
 
-    if ( currentOperator == "add" ){
+    if (x == '' || y == ''){
+        return;
+    } else if ( currentOperator == "add" ){
         return `${input1 + input2}`;
     } else if ( currentOperator == 'minus'){
         return `${input1 - input2}`;
