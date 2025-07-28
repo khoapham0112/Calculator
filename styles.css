@@ -26,6 +26,13 @@ body {
     background-color: rgb(72, 72, 72);
     border-radius: 8px;
     text-align: right;
+    align-items: center;
+    display: flex;
+}
+
+#result {
+    text-align: right;
+    width: 100%;
 }
 
 #button-container {
@@ -57,14 +64,8 @@ body {
     border-radius: 20px;
 }
 
-#operator {
-    font-size: 25px;
-    margin: 10px;
-    color: #60A07F;
-}
-
 #result {
-    font-size: 30px;
+    font-size: 40px;
     margin: 10px;
     color: white;
 }
