@@ -8,6 +8,7 @@ let minusbtn = document.querySelector("#minus");
 let multiplybtn = document.querySelector("#multiply");
 let dotbtn = document.querySelector("#dot");
 let equalbtn = document.querySelector("#equal");
+let digit0btn = document.querySelector("#number0");
 let digit1btn = document.querySelector("#number1");
 let digit2btn = document.querySelector("#number2");
 let digit3btn = document.querySelector("#number3");
@@ -37,6 +38,7 @@ function resetScreen() {
     shouldResetScreen = false;
 }
 
+digit0btn.addEventListener("click", () => appendNumber(digit0btn.textContent));
 digit1btn.addEventListener("click", () => appendNumber(digit1btn.textContent));
 digit2btn.addEventListener("click", () => appendNumber(digit2btn.textContent));
 digit3btn.addEventListener("click", () => appendNumber(digit3btn.textContent));
@@ -54,33 +56,88 @@ function equal() {
     if (x == '' || y == ''){
         return;
     } else if ( currentOperator == "add" ){
-        return `${input1 + input2}`;
+        return input1 + input2;
     } else if ( currentOperator == 'minus'){
-        return `${input1 - input2}`;
+        return input1 - input2;
     } else if ( currentOperator == 'multiply') {
-        return `${input1 * input2}`;
+        return input1 * input2;
     } else if (currentOperator == "division") {
-        return `${input1 / input2}`;
+        return input1 / input2;
     } else if (currentOperator == 'modolu') {
-        return `${input1 % input2}`;
+        return input1 % input2;
     }
 }
 
 function operation(operator) {
-    if (currentOperator == null) {
-        currentOperator = operator;
-        x = result.textContent;
-        shouldResetScreen = true;
-    } else {
+    if (currentOperator !== null){
+        if (currentOperator === null || shouldResetScreen){
+            return;
+        }
+        if (currentOperator === 'division' && y === '0'){
+            alert("can't divided by 0");
+            return;
+        } 
+
         y = result.textContent;
-        result.textContent = equal();
-        x = result.textContent;
-        shouldResetScreen = true;
-        currentOperator = operator;
+        result.textContent = rounded(equal());
+        currentOperator = null;
     }
+
+    x = result.textContent;
+    shouldResetScreen = true;
+    currentOperator = operator;
 }
 
 addbtn.addEventListener('click', () => operation('add'));
+modolubtn.addEventListener('click', () => operation('modolu'));
+divisionbtn.addEventListener('click', () => operation('division'));
+minusbtn.addEventListener('click', () => operation('minus'));
+multiplybtn.addEventListener('click', () => operation('multiply'));
+
+equalbtn.addEventListener("click", () => {
+    if (currentOperator === null || shouldResetScreen){
+            return;
+        }
+        if (currentOperator === 'division' && y === '0'){
+            alert("can't divided by 0");
+            return;
+        } 
+
+        y = result.textContent;
+        result.textContent = rounded(equal());
+        currentOperator = null;
+})
+
+dotbtn.addEventListener('click', () => {
+    if (result.textContent == '0' || shouldResetScreen){
+        resetScreen();
+        result.textContent += '0.';
+        return;
+    }
+    
+    if (result.textContent.includes(".")){
+        return;
+    }
+
+    result.textContent += '.';
+})
+
+clearbtn.addEventListener('click', () => {
+    let clearNumb = result.textContent.length > 1 ? result.textContent.slice(0, -1) : "0";
+    result.textContent = clearNumb;
+})
+
+allClearbtn.addEventListener('click', () => {
+    result.textContent = '0';
+    x = '';
+    y = '';
+    currentOperator = null;
+    shouldResetScreen = true;
+})
+
+function rounded(number){
+    return Math.round(number * 10) / 10;
+}
 
 
 
